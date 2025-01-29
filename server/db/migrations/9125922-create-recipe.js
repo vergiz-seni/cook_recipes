@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       recipe: {
-        type: Sequelize.TEXT,
+        type: Sequelize.ARRAY(Sequelize.TEXT),
       },
       createdAt: {
         allowNull: false,
