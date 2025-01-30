@@ -10,6 +10,7 @@ import {useEffect, useState} from 'react';
 import LoginPage from "./components/pages/LoginPage/LoginPage.jsx";
 // import MyBook from './components/pages/MyBook';
 import axiosInstance, {setAccessToken} from "./api/axiosInstance.js";
+import FavoritesPage from "./components/pages/FavoritesPage/FavoritesPage.jsx";
 
 function App() {
     const [user, setUser] = useState({ status: 'logging' });
@@ -86,37 +87,15 @@ function App() {
               },
             ]
         },
-        // {
-        //   path: '/add',
-        //   element: (
-        //     <ProtectedRouter isAllowed={user.status === 'guest'} redirectTo={'/signin'}>
-        //       {/* <AddPage user={user} /> */}
-        //     </ProtectedRouter>
-        //   ),
-        // },
-        // {
-        //   path: '/mybooks',
-        //   element: (
-        //     <ProtectedRouter isAllowed={user.status === 'guest'} redirectTo={'/signin'}>
-        //       <MyBook user={user} />
-        //     </ProtectedRouter>
-        //   ),
-        // },
-        // {
-        //   element: (
-        //     <ProtectedRouter isAllowed={user.status === 'logged'} redirectTo={'/home'} />
-        //   ),
-        //   children: [
-        //     {
-        //       path: '/login',
-        //       element: <LoginForm loginHandler={loginHandler} />,
-        //     },
-        //     {
-        //       path: '/register',
-        //       element: <RegisterForm registerHandler={registerHandler} />,
-        //     },
-        //   ],
-        // },
+        {
+          element: <ProtectedRouter isAllowed={user.status === 'logged'} redirectTo='/home'/>,
+          children: [
+            {
+              path: '/favorites',
+              element: <FavoritesPage />,
+            }
+          ]
+        },
         {
           path: '*',
           element: (

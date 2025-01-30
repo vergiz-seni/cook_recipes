@@ -8,20 +8,20 @@ function NavBar({logoutHandler, user}) {
         <div className={styles.container}>
             <div className={styles.navbar}>
                 <Link className={styles.navlink} to="/home">Recipes</Link>
+                <Link className={styles.navlink} to="/favorites">Избранные</Link>
                 {user.status !== 'logged' ? (
                     <>
                         <Link className={styles.navlink} to="/login">Login</Link>
                     <Link className={styles.navlink} to="/register">Register</Link>
                         </>
                 ) : null}
-            </div>
             {user.status === 'logged' ? (
                 <>
-                    <button onClick={logoutHandler}>Logout</button>
+                    <button onClick={logoutHandler} className={styles.favBtn}>Logout</button>
                     <p className={styles.navlink}>{user.status === 'logged' ? user.data.name : 'Гость'}</p>
                 </>
             ) : null}
-
+            </div>
         </div>
     );
 }
