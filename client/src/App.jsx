@@ -13,7 +13,6 @@ import axiosInstance, {setAccessToken} from "./api/axiosInstance.js";
 
 function App() {
     const [user, setUser] = useState({ status: 'logging' });
-  console.log(user);
     useEffect(() => {
       axiosInstance('/tokens/refresh')
           .then(({ data }) => {

@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import styles from './NavBar.module.css'
 
 function NavBar({logoutHandler, user}) {
-    console.log(user);
     return (
         <div className={styles.container}>
             <div className={styles.navbar}>
