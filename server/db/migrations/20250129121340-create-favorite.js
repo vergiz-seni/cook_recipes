@@ -16,11 +16,14 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
-        onDelete: 'CASCADE',
       },
       recipeId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Recipes',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,

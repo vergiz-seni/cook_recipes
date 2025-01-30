@@ -11,11 +11,16 @@ function MainPage() {
     });
   }, []);
 
+  async function addRecipeToFavorites (recipeId) {
+      const res = await axiosInstance.post(`/favorites/${recipeId}`)
+      console.log(res)
+  }
+
   return (
     <main>
       <div className="mainPage">
         {card?.map((card) => (
-          <CookieCard key={card.id} card={card}></CookieCard>
+          <CookieCard key={card.id} card={card} addRecipeToFavorites={addRecipeToFavorites}></CookieCard>
         ))}
       </div>
       ;

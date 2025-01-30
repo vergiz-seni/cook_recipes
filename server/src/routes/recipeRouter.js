@@ -14,7 +14,7 @@ recipeRouter.get('/', async (req, res) => {
 recipeRouter.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const oneRecipe = await Recipe.ndByPk(id);
+    const oneRecipe = await Recipe.findByPk(id);
     res.json(oneRecipe);
   } catch (error) {
     console.log(error);

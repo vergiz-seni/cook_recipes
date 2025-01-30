@@ -87,14 +87,8 @@ function App() {
               },
             ]
         },
-        {
-          element: <ProtectedRouter isAllowed={user.status === 'logged'} redirectTo='/home'/>,
-          children: [
-            {
-              path: '/favorites',
-              element: <FavoritesPage />,
-            }
-          ]
+        {path: '/favorites',
+          element: <ProtectedRouter isAllowed={user.status === 'logged'} redirectTo='/home'><FavoritesPage /></ProtectedRouter>,
         },
         {
           path: '*',

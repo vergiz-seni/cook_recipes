@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-export default function CookieCard({ card }) {
+export default function CookieCard({ card, addRecipeToFavorites }) {
   return (
     <Card>
       <Card.Body>
@@ -15,9 +15,9 @@ export default function CookieCard({ card }) {
         <Card.Text>{card.ingredients}</Card.Text>
         <Card.Text>Время приготовления: {card.cookingTime}</Card.Text>
         <Card.Text>{card.recipe}</Card.Text>
-        <Link to={`/recipes/${card.id}`}>
-          <Button variant="primary">Избранные</Button>
-        </Link>
+        {/*<Link to={`/recipe/${card.id}`}>*/}
+          <Button onClick={() => addRecipeToFavorites(card.id)}>Избранные</Button>
+        {/*</Link>*/}
       </Card.Body>
     </Card>
   );
