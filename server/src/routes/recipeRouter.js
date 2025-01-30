@@ -14,8 +14,16 @@ recipeRouter.get('/', async (req, res) => {
 recipeRouter.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const oneRecipe = await Recipe.findByPk(id);
-    res.json(oneRecipe);
+    console.log(req.params);
+
+    const oneRecipe = await Recipe.findOne({ where: { id } });
+    console.log(oneRecipe);
+
+    if (!oneRecipe) {
+      return res.status(404).json({ message: 'Рецепт не найден' });
+    }
+
+    res.status(200).json(oneRecipe);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Ошибка при get запросе по req.params' });
