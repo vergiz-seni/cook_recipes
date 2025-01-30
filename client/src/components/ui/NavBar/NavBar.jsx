@@ -1,13 +1,27 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+import styles from './NavBar.module.css'
 
-function NavBar(props) {
+function NavBar({logoutHandler, user}) {
+    console.log(user);
     return (
-        <div>
-            <h1>UserName</h1>
-            <h1>Recipes</h1>
-            <h1>Login</h1>
-            <h1>Register</h1>
-            <h1>Logout</h1>
+        <div className={styles.container}>
+            <div className={styles.navbar}>
+                <Link className={styles.navlink} to="/home">Recipes</Link>
+                {user.status !== 'logged' ? (
+                    <>
+                        <Link className={styles.navlink} to="/login">Login</Link>
+                    <Link className={styles.navlink} to="/register">Register</Link>
+                        </>
+                ) : null}
+            </div>
+            {user.status === 'logged' ? (
+                <>
+                    <button onClick={logoutHandler}>Logout</button>
+                    <p className={styles.navlink}>{user.status === 'logged' ? user.data.name : 'Гость'}</p>
+                </>
+            ) : null}
+
         </div>
     );
 }

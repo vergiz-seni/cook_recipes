@@ -2,7 +2,7 @@ import React from 'react';
 
 function MainPage(props) {
     return (
-        <div></div>
+        <div>Здесь будет размап всех рецептов</div>
     );
 }
 
