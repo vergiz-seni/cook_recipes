@@ -1,8 +1,10 @@
 import React from 'react';
+import RegisterForm from "../../ui/RegisterForm.jsx";
 
-function RegPage(props) {
+function RegPage({registerHandler}) {
     return (
-        <div></div>
+        <div>
+        </div>
     );
 }
 

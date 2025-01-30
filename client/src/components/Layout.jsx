@@ -2,10 +2,10 @@ import React from 'react';
 import NavBar from "./ui/NavBar/NavBar.jsx";
 import {Outlet} from "react-router-dom";
 
-function Layout(props) {
+function Layout({logoutHandler, user}) {
     return (
         <>
-            <NavBar/>
+            <NavBar logoutHandler={logoutHandler} user={user}/>
             <Outlet/>
         </>
     );

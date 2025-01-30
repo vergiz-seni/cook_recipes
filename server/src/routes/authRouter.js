@@ -5,20 +5,21 @@ const generateTokens = require('../utils/generateTokens');
 const cookieConfig = require('../configs/cookie.config');
 
 authRouter.post('/register', async (req, res) => {
-  const { email, name, password } = req.body;
-  if (!email || !name || !password) {
+  const { email, name, password, confirmPassword } = req.body;
+  if (!email || !name || !password || !confirmPassword) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
   try {
     const [user, created] = await User.findOrCreate({
       where: { email },
-      defaults: { name, password: await bcrypt.hash(password, 10) },
+      defaults: { name, password: await bcrypt.hash(password, 10), confirmPassword },
     });
     if (!created) {
       return res.status(400).json({ error: 'User already exists' });
     }
     const plainUser = user.get();
     delete plainUser.password;
+    delete plainUser.confirmPassword;
     const { accessToken, refreshToken } = generateTokens({ user: plainUser });
 
     res

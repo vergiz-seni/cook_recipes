@@ -1,17 +1,56 @@
 import Layout from './components/Layout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LoginForm from './components/ui/LoginForm';
+import LoginForm from './components/ui/LoginForm.jsx';
 import RegisterForm from './components/ui/RegisterForm';
 import ProtectedRouter from './HOCs/ProtectedRouter';
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
-import useUser from './hooks/useUser';
 import MainPage from './components/pages/MainPage/MainPage';
 // import AddPage from './components/pages/AddPage';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import LoginPage from "./components/pages/LoginPage/LoginPage.jsx";
 // import MyBook from './components/pages/MyBook';
+import axiosInstance, {setAccessToken} from "./api/axiosInstance.js";
 
 function App() {
-  const { user, loginHandler, logoutHandler, registerHandler } = useUser();
+    const [user, setUser] = useState({ status: 'logging' });
+  console.log(user);
+    useEffect(() => {
+      axiosInstance('/tokens/refresh')
+          .then(({ data }) => {
+            setTimeout(() => {
+              setUser({ status: 'logged', data: data.user });
+            }, 1000);
+            setAccessToken(data.accessToken);
+          })
+          .catch(() => {
+            setUser({ status: 'guest', data: null });
+            setAccessToken('');
+          });
+    }, []);
+
+    function registerHandler(data) {
+      axiosInstance
+          .post('/auth/register', data)
+          .then(({ data }) => {
+            // console.log(data);
+            setUser({ status: 'logged', data: data.user });
+            setAccessToken(data.accessToken);
+          })
+          .catch((error) => alert(error));
+    }
+
+    function loginHandler(data) {
+      axiosInstance.post('/auth/login', data).then(({ data }) => {
+        setUser({ status: 'logged', data: data.user });
+        setAccessToken(data.accessToken);
+      });
+    }
+
+    function logoutHandler() {
+      axiosInstance
+          .get('/auth/logout')
+          .then(() => setUser({ status: 'guest', data: null }));
+    }
   const [activeItem, setActiveItem] = useState('Книги');
   const handleItemClick = (name) => {
     setActiveItem(name);
@@ -31,10 +70,21 @@ function App() {
         {
           path: '/home',
           element: (
-            <ProtectedRouter isAllowed={user.status === 'guest'} redirectTo={'/signin'}>
               <MainPage user={user} />
-            </ProtectedRouter>
           ),
+        },
+        {
+          element: <ProtectedRouter isAllowed={user.status !== 'logged'} redirectTo='/home'/>,
+            children: [
+              {
+                path: '/login',
+                element: <LoginForm loginHandler={loginHandler} />
+              },
+              {
+                path: '/register',
+                element: <RegisterForm registerHandler={registerHandler} />
+              },
+            ]
         },
         // {
         //   path: '/add',
@@ -52,21 +102,21 @@ function App() {
         //     </ProtectedRouter>
         //   ),
         // },
-        {
-          element: (
-            <ProtectedRouter isAllowed={user.status !== 'logged'} redirectTo={'/home'} />
-          ),
-          children: [
-            {
-              path: '/signin',
-              element: <LoginForm loginHandler={loginHandler} />,
-            },
-            {
-              path: '/signup',
-              element: <RegisterForm registerHandler={registerHandler} />,
-            },
-          ],
-        },
+        // {
+        //   element: (
+        //     <ProtectedRouter isAllowed={user.status === 'logged'} redirectTo={'/home'} />
+        //   ),
+        //   children: [
+        //     {
+        //       path: '/login',
+        //       element: <LoginForm loginHandler={loginHandler} />,
+        //     },
+        //     {
+        //       path: '/register',
+        //       element: <RegisterForm registerHandler={registerHandler} />,
+        //     },
+        //   ],
+        // },
         {
           path: '*',
           element: (
