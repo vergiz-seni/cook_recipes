@@ -14,7 +14,6 @@ import OneRecipePage from "./components/pages/OneRecipePage/OneRecipePage.jsx";
 
 function App() {
     const [user, setUser] = useState({ status: 'logging' });
-  console.log(user);
     useEffect(() => {
       axiosInstance('/tokens/refresh')
           .then(({ data }) => {
