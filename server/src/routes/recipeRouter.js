@@ -23,7 +23,7 @@ recipeRouter.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Рецепт не найден' });
     }
 
-    res.json(oneRecipe);
+    res.status(200).json(oneRecipe);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Ошибка при get запросе по req.params' });

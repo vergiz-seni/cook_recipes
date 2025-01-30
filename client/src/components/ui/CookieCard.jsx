@@ -11,13 +11,13 @@ export default function CookieCard({ card }) {
           src={card.img}
           style={{ height: '400px', width: '600px' }}
         />
-        <Card.Title>{card.title}</Card.Title>
+        <Link to={`/onerecipe/${card.id}`}>
+          <Card.Title>{card.title}</Card.Title>
+        </Link>
         <Card.Text>{card.ingredients}</Card.Text>
         <Card.Text>Время приготовления: {card.cookingTime}</Card.Text>
-        <Card.Text>{card.recipe}</Card.Text>
-        <Link to={`/recipes/${card.id}`}>
-          <Button variant="primary">Избранные</Button>
-        </Link>
+
+        <Button variant="primary">Избранные</Button>
       </Card.Body>
     </Card>
   );

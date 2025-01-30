@@ -75,7 +75,7 @@ function App() {
           ),
         },
         {
-          path: '/onerecipe',
+          path: '/onerecipe/:recipeId',
           element: <OneRecipePage/> 
         },
         {
