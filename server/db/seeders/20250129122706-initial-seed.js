@@ -219,6 +219,13 @@ module.exports = {
         ],
       },
     ]);
+
+    await queryInterface.bulkInsert('Favorites', [
+      {
+        userId: 1,
+        recipeId: 14
+      }
+    ]);
   },
 
   async down(queryInterface, Sequelize) {
