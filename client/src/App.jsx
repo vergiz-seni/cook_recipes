@@ -10,6 +10,7 @@ import {useEffect, useState} from 'react';
 import LoginPage from "./components/pages/LoginPage/LoginPage.jsx";
 // import MyBook from './components/pages/MyBook';
 import axiosInstance, {setAccessToken} from "./api/axiosInstance.js";
+import OneRecipePage from "./components/pages/OneRecipePage/OneRecipePage.jsx";
 
 function App() {
     const [user, setUser] = useState({ status: 'logging' });
@@ -74,6 +75,10 @@ function App() {
           ),
         },
         {
+          path: '/onerecipe',
+          element: <OneRecipePage/> 
+        },
+        {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} redirectTo='/home'/>,
             children: [
               {
@@ -84,6 +89,7 @@ function App() {
                 path: '/register',
                 element: <RegisterForm registerHandler={registerHandler} />
               },
+             
             ]
         },
         // {
