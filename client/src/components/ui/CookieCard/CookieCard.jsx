@@ -3,22 +3,25 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import  styles from '../CookieCard/CookieCard.module.css';
 
-export default function CookieCard({ card }) {
+export default function CookieCard({ card, addRecipeToFavorites, user }) {
   return (
     <div className={styles.card}>
-      <Card>
-        <Card.Body>
+      <Card >
+        <Card.Body className={styles.content}>
           <Card.Img
             variant="top"
             src={card.img}
-            style={{ height: '400px', width: '600px' }}
+            className={styles.img}
           />
-          <Link to={`/onerecipe/${card.id}`}>
-            <Card.Title>{card.title}</Card.Title>
+          <Link to={`/onerecipe/${card.id}`} className={styles.title}>
+            <Card.Title >{card.title}</Card.Title>
           </Link>
-          <Card.Text>Ингредиенты: {card.ingredients}</Card.Text>
-          <Card.Text>Время приготовления: {card.cookingTime}</Card.Text>
-          <Button variant="primary">Избранные</Button>
+          <h3 className={styles.ingTitle}>Ингредиенты:</h3>
+          <Card.Text className={styles.ingredients}> {card.ingredients}</Card.Text>
+          <Card.Text><b>Время приготовления:</b> {card.cookingTime}</Card.Text>
+          {user.status === 'logged' ? (
+              <Button onClick={() => addRecipeToFavorites(card.id)} className={styles.favBtn}>В избранные</Button>
+          ) : null}
         </Card.Body>
       </Card>
     </div>

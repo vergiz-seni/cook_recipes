@@ -1,16 +1,16 @@
 import Layout from './components/Layout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LoginForm from './components/ui/LoginForm.jsx';
-import RegisterForm from './components/ui/RegisterForm';
+import RegisterForm from './components/ui/RegisterForm/RegisterForm.jsx';
 import ProtectedRouter from './HOCs/ProtectedRouter';
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
 import MainPage from './components/pages/MainPage/MainPage';
 // import AddPage from './components/pages/AddPage';
 import {useEffect, useState} from 'react';
-import LoginPage from "./components/pages/LoginPage/LoginPage.jsx";
+import LoginForm from "./components/pages/LoginPage/LoginForm.jsx" ;
 // import MyBook from './components/pages/MyBook';
 import axiosInstance, {setAccessToken} from "./api/axiosInstance.js";
 import OneRecipePage from "./components/pages/OneRecipePage/OneRecipePage.jsx";
+import FavoritesPage from "./components/pages/FavoritesPage/FavoritesPage.jsx";
 
 function App() {
     const [user, setUser] = useState({ status: 'logging' });
@@ -47,10 +47,14 @@ function App() {
     }
 
     function logoutHandler() {
+        window.alert('Вы вышли из аккаунта')
       axiosInstance
           .get('/auth/logout')
           .then(() => setUser({ status: 'guest', data: null }));
     }
+
+
+
   const [activeItem, setActiveItem] = useState('Книги');
   const handleItemClick = (name) => {
     setActiveItem(name);
@@ -70,12 +74,12 @@ function App() {
         {
           path: '/home',
           element: (
-              <MainPage user={user} />
+              <MainPage user={user}/>
           ),
         },
         {
           path: '/onerecipe/:recipeId',
-          element: <OneRecipePage/> 
+          element: <OneRecipePage/>
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} redirectTo='/home'/>,
@@ -88,9 +92,17 @@ function App() {
                 path: '/register',
                 element: <RegisterForm registerHandler={registerHandler} />
               },
-             
             ]
         },
+          {
+              element: <ProtectedRouter isAllowed={user.status === 'logged'} redirectTo='/home'/>,
+              children: [
+                  {
+                      path: '/favorites',
+                      element: <FavoritesPage />
+                  }
+              ]
+          },
         // {
         //   path: '/add',
         //   element: (

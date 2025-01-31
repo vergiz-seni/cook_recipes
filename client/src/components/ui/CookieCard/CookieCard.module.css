@@ -2,6 +2,52 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 650px;
   width: 600px;
+  border: 1px solid black;
+  padding: 30px;
+  box-shadow: 1px 1px 15px black;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.img {
+  height: 70%;
+  width: 90%;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 35px;
+  color: #997103;
+  text-align: center;
+}
+
+.ingredients {
+  width: 60%;
+}
+
+.favBtn {
+  font-size: 35px;
+  border: none;
+  background-color: seagreen;
+  color: white;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 30px;
+  margin-top: 15px;
+  transition: all 0.4s
+}
+
+.favBtn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: #03730d;
 }

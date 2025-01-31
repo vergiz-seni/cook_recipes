@@ -3,7 +3,7 @@ import axiosInstance from '../../../api/axiosInstance';
 import CookieCard from '../../ui/CookieCard/CookieCard';
 import styles from './MainPage.module.css';
 
-function MainPage() {
+function MainPage({user}) {
   const [card, setCard] = useState([]);
   const [sortType, setSortType] = useState('');
 
@@ -59,9 +59,25 @@ function MainPage() {
     setSortType(type);
   };
 
+  async function addRecipeToFavorites (recipeId) {
+    try {
+      const res = await axiosInstance.post(`/favorites/${recipeId}`)
+      if (res.status === 200) {
+        window.alert('Товар добавлен в избранные')
+      }
+    } catch (e) {
+      window.alert(e.response.data.error);
+    }
+  }
+
   return (
     <main>
       <div className={styles.container}>
+        <div className={styles.top}>
+          <h1 className={styles.headTitle}>Все рецепты:</h1>
+        <div className={styles.sorting}>
+          <button class={styles.dropBtn}>Фильтры ↓</button>
+          <div className={styles.dropdownContent}>
         <label>
           <input
             type="checkbox"
@@ -70,6 +86,7 @@ function MainPage() {
           />
           По времени (возрастание)
         </label>
+            <br/>
         <label>
           <input
             type="checkbox"
@@ -78,6 +95,7 @@ function MainPage() {
           />
           По времени (убывание)
         </label>
+            <br/>
         <label>
           <input
             type="checkbox"
@@ -86,6 +104,7 @@ function MainPage() {
           />
           По ингредиентам (возрастание)
         </label>
+            <br/>
         <label>
           <input
             type="checkbox"
@@ -94,9 +113,12 @@ function MainPage() {
           />
           По ингредиентам (убывание)
         </label>
+          </div>
+        </div>
+        </div>
         <div className={styles.mapcard}>
           {card?.map((card) => (
-            <CookieCard key={card.id} card={card}></CookieCard>
+            <CookieCard key={card.id} card={card} addRecipeToFavorites={addRecipeToFavorites} user={user}></CookieCard>
           ))}
         </div>
       </div>
