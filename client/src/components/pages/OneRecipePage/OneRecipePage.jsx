@@ -20,27 +20,25 @@ function OneRecipePage() {
   }, [recipeId]);
 
   return (
-    <div className={styles.recipeCardContent}>
       <div className={styles.recipeContainer}>
-        <Card style={{ width: '50rem' }} className={styles.recipeCard}>
+        <Card className={styles.recipeCard}>
           <Card.Img
             className={styles.recipeImg}
             variant="top"
             src={oneRecipe.img}
-            style={{ height: '400px', width: '600px' }}
           />
-          <Card.Body>
-            <Card.Title>
-              <strong>Название:</strong> {oneRecipe.title}
+          <Card.Body className={styles.cardBody}>
+            <Card.Title className={styles.title}>
+              {oneRecipe.title}
             </Card.Title>
             <Card.Text>
               <strong>Время приготовления:</strong> {oneRecipe.cookingTime}
             </Card.Text>
-            <Card.Text>
-              <strong>Ингредиенты:</strong> {oneRecipe.ingredients}
+            <Card.Text className={styles.ingredients}>
+              <strong>Ингредиенты:</strong>{oneRecipe.ingredients}
             </Card.Text>
-            <Card.Text>
-              <strong>Рецепт:</strong>
+            <strong>Рецепт:</strong>
+            <Card.Text className={styles.recipe}>
               <ul>
                 {oneRecipe.recipe.map((step, index) => (
                   <li key={index}>{step}</li>
@@ -50,7 +48,6 @@ function OneRecipePage() {
           </Card.Body>
         </Card>
       </div>
-    </div>
   );
 }
 

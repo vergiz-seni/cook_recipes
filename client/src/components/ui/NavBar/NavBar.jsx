@@ -5,21 +5,26 @@ import styles from './NavBar.module.css'
 function NavBar({logoutHandler, user}) {
     return (
         <div className={styles.container}>
-            <div className={styles.navbar}>
-                <Link className={styles.navlink} to="/home">Recipes</Link>
-                <Link className={styles.navlink} to="/favorites">Избранные</Link>
-                {user.status !== 'logged' ? (
+           <h1 className={styles.title}>👨‍🍳</h1>
+            <div>
+                {user.status === 'logged' ? (
+                    <div className={styles.nav}>
+                        <Link to="/home" className={styles.navlink}>Рецепты</Link>
+                        <Link to="/favorites" className={styles.navlink}>Избранные</Link>
+                    </div>
+                ) : (
+                    <Link to="/home" className={styles.navlink}>Рецепты</Link>
+                )}
+            </div>
+            <div className={styles.staticRight}>
+                {user.status === 'logged' ? (
                     <>
-                        <Link className={styles.navlink} to="/login">Login</Link>
-                    <Link className={styles.navlink} to="/register">Register</Link>
-                        </>
-                ) : null}
-            {user.status === 'logged' ? (
-                <>
-                    <button onClick={logoutHandler} className={styles.favBtn}>Logout</button>
-                    <p className={styles.navlink}>{user.status === 'logged' ? user.data.name : 'Гость'}</p>
-                </>
-            ) : null}
+                        <button onClick={logoutHandler} className={styles.logoutBtn}>⬅️</button>
+                        <h1 className={styles.h1tag}>{user.data.name}</h1>
+                    </>
+                ) : (
+                    <Link to="/login" className={styles.navlink}>Войти</Link>
+                )}
             </div>
         </div>
     );

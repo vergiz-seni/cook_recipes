@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    background-color: seagreen;
+    justify-content: space-between;
+    background-color: #1c1c1c;
     height: 100px;
     color: white;
 }
@@ -27,4 +27,29 @@
     background-color: seagreen;
     border: none;
     color: white;
+}
+
+.title {
+    font-size: 50px;
+    margin-left: 7%;
+}
+
+.staticRight {
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 3%;
+    gap: 10px;
+}
+
+.logoutBtn {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 35px;
+}
+
+.nav {
+    display: flex;
+    gap: 50px;
 }

@@ -1,5 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import {Link} from "react-router-dom";
+import styles from './LoginForm.module.css'
 
 const LoginForm = ({ loginHandler }) => {
   const {
@@ -19,12 +21,12 @@ const LoginForm = ({ loginHandler }) => {
     reset();
   };
   return (
-    <Container className="mt-4">
+    <Container className={styles.container}>
       <Row className="justify-content-center">
         <Col md={6}>
-          <div className="rega">
-            <h1 className="text-center mb-4">Вход в систему</h1>
-            <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className={styles.content}>
+            <h1 className={styles.title}>Вход в систему</h1>
+            <Form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.inputs}>
               <Controller
                 name="email"
                 control={control}
@@ -36,13 +38,15 @@ const LoginForm = ({ loginHandler }) => {
                   },
                 }}
                 render={({ field }) => (
-                  <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
+                  <Form.Group className={styles.oneInput}>
+                    <Form.Label className={styles.inputTitle}>Email</Form.Label>
+                      <br/>
+                    <Form.Control className={styles.inputField}
                       {...field}
                       type="email"
                       isInvalid={!!errors.email}
                       placeholder="Введите email"
+                                  autoComplete="off"
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.email?.message}
@@ -57,9 +61,10 @@ const LoginForm = ({ loginHandler }) => {
                   required: 'Пароль обязателен',
                 }}
                 render={({ field }) => (
-                  <Form.Group className="mb-3">
-                    <Form.Label>Пароль</Form.Label>
-                    <Form.Control
+                  <Form.Group className={styles.oneInput}>
+                    <Form.Label className={styles.inputTitle}>Пароль</Form.Label>
+                      <br/>
+                    <Form.Control className={styles.inputField}
                       {...field}
                       type="password"
                       isInvalid={!!errors.password}
@@ -71,9 +76,12 @@ const LoginForm = ({ loginHandler }) => {
                   </Form.Group>
                 )}
               />
-              <Button type="submit" variant="warning" className="w-100 mt-2">
+                <div className={styles.bottomDiv}>
+              <Button type="submit" variant="warning" className={styles.btn}>
                 Войти
               </Button>
+                <Link to='/register' className={styles.reg}>Ещё нет аккаунта?</Link>
+                </div>
             </Form>
           </div>
         </Col>

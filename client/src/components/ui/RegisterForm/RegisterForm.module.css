@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.content {
+    border: 1px solid black;
+    padding: 10px 30px 30px 30px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 15px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 600px;
+    background-color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.inputs {
+    width: 450px;
+    height: 45px;
+    padding: 15px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.oneinputdiv{
+    margin-top: 15px;
+}
+
+.title {
+    font-size: 50px;
+}
+
+.btn {
+    font-size: 30px;
+    height: 50px;
+    width: 300px;
+    border: none;
+    background-color: seagreen;
+    color: white;
+    border-radius: 15px;
+    margin-top: 35px;
+}
+
+.inputTitle{
+    margin-left: 10px;
+}

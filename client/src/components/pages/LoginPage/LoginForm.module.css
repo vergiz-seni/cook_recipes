@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+    padding: 15px 30px 5px 30px;
+    height: 500px;
+    width: 500px;
+    margin-top: 100px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 1px 15px black;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 350px;
+    width: 500px;
+}
+
+.oneInput{
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputField{
+    width: 400px;
+    height: 20px;
+    padding: 25px;
+    font-size: 20px;
+}
+
+.inputTitle{
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+.title {
+    font-size: 45px;
+}
+
+.btn {
+    width: 300px;
+    height: 55px;
+    font-size: 30px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.reg {
+    font-size: 20px;
+    color: grey;
+}
+
+.bottomDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}

@@ -1,13 +1,14 @@
 .container {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     border: 1px solid black;
-    height: 600px;
-    width: 1000px;
+    height: auto;
+    width: 1100px;
     border-radius: 15px;
     box-shadow: 1px 1px 15px black;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background-color: white;
 }
 
 .btn{
@@ -16,3 +17,65 @@
     font-size: 20px;
 }
 
+.content {
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img {
+    height: 300px;
+    width: 500px;
+    border-radius: 20px;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 40px;
+}
+
+.step {
+    width: 100%;
+    margin-left: 40px;
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.subtitle{
+    font-size: 30px;
+}
+
+.leftDesc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delFav {
+    width: 95%;
+    height: 50px;
+    font-size: 25px;
+    margin-bottom: 25px;
+    border: none;
+    background-color: indianred;
+    color: white;
+    border-radius: 15px;
+    transition: all 0.4s;
+}
+
+.delFav:hover {
+    background-color: darkred;
+    transform: scaleY(1.05);
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
