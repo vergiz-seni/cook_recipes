@@ -35,7 +35,7 @@ favoriteRouter.route('/:recipeId').post(verifyAccessToken, async (req, res) => {
   })
 
   if (target) {
-   res.status(400).json({error: 'Товар уже добавлен в корзину'})
+   res.status(400).json({error: 'Товар уже добавлен в избранные'})
   } else {
    const result = await Favorite.create({recipeId, userId});
    res.status(200).send(result);
